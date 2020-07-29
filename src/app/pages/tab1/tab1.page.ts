@@ -9,7 +9,7 @@ import { Article } from 'src/app/interfaces/interfaces';
 })
 export class Tab1Page implements OnInit{
 
-  noticias: Article [] = [];
+  news: Article [] = [];
   constructor( private noticiasService:NoticiasService) {
 
   }
@@ -17,9 +17,8 @@ export class Tab1Page implements OnInit{
   ngOnInit(){
     this.noticiasService.getTopHeadLines()
     .subscribe( resp =>{
-      // console.log('noticias',resp);
-      this.noticias.push(...resp.articles);
+      // console.log('news',resp);
+      this.news.push(...resp.articles);
     });
   }
-
 }

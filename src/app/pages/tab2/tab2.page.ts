@@ -20,6 +20,7 @@ export class Tab2Page{
   news : Article[] = [];
 
   ionViewDidEnter() {
+    this.segment.value = this.categorys[0];
     this.chargeNew(this.categorys[0]);
   }
 
@@ -28,9 +29,17 @@ export class Tab2Page{
     this.chargeNew(event.detail.value);
   }
 
-  chargeNew( category: string){
+  chargeNew( category: string, event?){
     this.noticiasService.getTopHeadLinesCategorys(category).subscribe( resp => {
       this.news.push(...resp.articles);
+
+      if (event) {
+        event.target.complete();
+      }
     });
+  }
+
+  loadData(event){
+    this.chargeNew(this.segment.value, event)
   }
 }
